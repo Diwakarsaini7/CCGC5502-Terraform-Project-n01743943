@@ -55,6 +55,53 @@ The following Azure services were provisioned:
 - Recovery Services Vault: `recovery-n01743943`
 - Log Analytics Workspace: `log-n01743943`
 
+  ### PROJECT STRUCTURE
+root/
+│
+├── backend.tf
+├── main.tf
+├── providers.tf
+├── outputs.tf
+├── variables.tf
+│
+├── modules/
+│   ├── common/
+│   ├── database/
+│   ├── loadbalancer/
+│   ├── network/
+│   ├── resource_group/
+│   ├── vmlinux/
+│   └── vmwindows/
+##############
+📦 Key Features & Requirements Met
+✅ Remote Backend
+✅ Parameterized using input variables & locals
+✅ Modular design using child modules
+✅ Scalable deployment using count and for_each
+✅ Linux & Windows VMs with availability sets
+✅ Public/private IPs and FQDNs output
+✅ NSG rules and diagnostics setup
+✅ Hostnames displayed using provisioners
+✅ Compliant with naming conventions and tagging
+
+
+#########################
+tags = {
+  Assignment      = "CCGC 5502 Automation Assignment"
+  Name            = "mohan.sai"
+  ExpirationDate  = "2024-12-31"
+  Environment     = "Learning"
+}
+
+✅ Terraform Commands Used
+
+terraform init
+terraform validate
+terraform plan
+terraform apply --auto-approve
+terraform output
+terraform destroy --auto-approve     
+
 ### ✅ Output Sample
 
 Example Terraform output:
