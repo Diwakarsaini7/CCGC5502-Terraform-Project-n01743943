@@ -10,14 +10,20 @@ resource "azurerm_availability_set" "windows_avs" {
   }
 }
 
+resource "random_string" "suffix" {
+  length  = 6
+  special = false
+  upper   = false
+}
+
 resource "azurerm_public_ip" "windows_pip" {
   count               = 2
-  name                = "n01743943-w-vm${count.index + 1}-pip"
+  name                = "n01743943-w-vm${count.index + 1}-pip-${random_string.suffix.result}"
   location            = var.location
   resource_group_name = var.windows_rg_name
   allocation_method   = "Dynamic"
   sku                 = "Basic"
-  domain_name_label   = "n01743943-w-vm${count.index + 1}-${formatdate("YYYYMMDDHHmmss", timestamp())}"  # Unique suffix
+  domain_name_label   = "n01743943-w-vm${count.index + 1}-${random_string.suffix.result}"
   tags = {
     Assignment     = "CCGC 5502 Automation Assignment"
     Name           = "Mohan Sai"
@@ -28,7 +34,7 @@ resource "azurerm_public_ip" "windows_pip" {
 
 resource "azurerm_network_interface" "windows_nic" {
   count               = 2
-  name                = "n01743943-w-vm${count.index + 1}-nic"
+  name                = "n01743943-w-vm${count.index + 1}-nic-${random_string.suffix.result}"
   location            = var.location
   resource_group_name = var.windows_rg_name
   tags = {
